@@ -11,7 +11,8 @@ namespace SimpleBot.Util
     {
         public const string STRING_DE_CONEXAO = "mongodb://localhost:27017";
         public const string NOME_DA_BASE = "Fiap";
-        public const string NOME_DA_COLECAO = "Messages";
+        public const string COLECAO_MESSAGES = "Messages";
+        public const string COLECAO_CONTADOR = "Acessos";
 
         private static readonly IMongoClient _client;
         private static readonly IMongoDatabase _database;
@@ -29,7 +30,12 @@ namespace SimpleBot.Util
 
         public IMongoCollection<SimpleMessage> messages
         {
-            get { return _database.GetCollection<SimpleMessage>(NOME_DA_COLECAO); }
+            get { return _database.GetCollection<SimpleMessage>(COLECAO_MESSAGES); }
+        }
+
+        public IMongoCollection<UserProfile> access
+        {
+            get { return _database.GetCollection<UserProfile>(COLECAO_CONTADOR); }
         }
     }
 }
